@@ -66,9 +66,10 @@ export default function CadastroPage() {
       // tipoPessoa === 'pj'
       endpoint = apiUrl("/api/desmanches");
       // Mapeia o campo 'razaoSocial' do formulário para o campo 'nome' que o backend espera
+      const cnpjClean = form.cnpj.replace(/\D/g, "");
       body = {
         nome: form.razaoSocial,
-        cnpj: form.cnpj,
+        cnpj: cnpjClean,
         email: form.email,
         senha: form.senha,
         telefone: form.telefone || null,
