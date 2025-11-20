@@ -60,11 +60,60 @@ function ensureFavoritosTable() {
     else console.log("[INIT] Tabela 'favoritos' verificada/criada.");
   });
 }
+// Cria tabela clientes se não existir (necessária para cadastro PF)
+function ensureClientesTable() {
+  const sql = `CREATE TABLE IF NOT EXISTS clientes (
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    sobrenome VARCHAR(100) NOT NULL,
+    CPF VARCHAR(14) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    telefone VARCHAR(20) NULL,
+    role VARCHAR(20) NOT NULL DEFAULT 'cliente',
+    foto_url VARCHAR(500) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE KEY uq_clientes_cpf (CPF),
+    UNIQUE KEY uq_clientes_email (email)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;`;
+  db.query(sql, (err) => {
+    if (err) console.error("[INIT] Erro ao criar/verificar tabela clientes:", err);
+    else console.log("[INIT] Tabela 'clientes' verificada/criada.");
+  });
+}
+// Cria tabela desmanches se não existir (necessária para cadastro PJ)
+function ensureDesmanchesTable() {
+  const sql = `CREATE TABLE IF NOT EXISTS desmanches (
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(150) NOT NULL,
+    cnpj VARCHAR(20) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    telefone VARCHAR(20) NULL,
+    endereco VARCHAR(255) NULL,
+    horario VARCHAR(255) NULL,
+    descricao TEXT NULL,
+    role VARCHAR(20) NOT NULL DEFAULT 'desmanche',
+    foto_url VARCHAR(500) NULL,
+    destaque TINYINT(1) NOT NULL DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE KEY uq_desmanches_cnpj (cnpj),
+    UNIQUE KEY uq_desmanches_email (email)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;`;
+  db.query(sql, (err) => {
+    if (err) console.error("[INIT] Erro ao criar/verificar tabela desmanches:", err);
+    else console.log("[INIT] Tabela 'desmanches' verificada/criada.");
+  });
+}
 function runMigrations() {
-  if (process.env.RUN_MIGRATIONS === 'false') {
-    console.log('[INIT] Migrações desativadas por RUN_MIGRATIONS=false');
+  if (process.env.RUN_MIGRATIONS === "false") {
+    console.log("[INIT] Migrações desativadas por RUN_MIGRATIONS=false");
     return;
   }
+  ensureClientesTable();
+  ensureDesmanchesTable();
   ensureFavoritosTable();
   ensureMovimentacoesEstoqueTable();
   ensureMovimentacoesExtras();
