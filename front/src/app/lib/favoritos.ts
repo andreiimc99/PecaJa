@@ -22,7 +22,7 @@ export async function toggleFavorito(
   const status = await getStatusFavorito(pecaId);
   if (status) {
     // Remover
-    const delRes = await fetch(`${API_BASE}/api/favoritos/${pecaId}`, {
+    const delRes = await fetch(apiUrl(`/api/favoritos/${pecaId}`), {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -31,7 +31,7 @@ export async function toggleFavorito(
     return { favorited: false };
   } else {
     // Adicionar
-    const addRes = await fetch(`${API_BASE}/api/favoritos`, {
+    const addRes = await fetch(apiUrl(`/api/favoritos`), {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
