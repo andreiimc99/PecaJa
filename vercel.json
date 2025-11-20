@@ -1,8 +1,5 @@
 {
-  "version": 2,
-  "builds": [
-    { "src": "front/package.json", "use": "@vercel/next" },
-    { "src": "backend/server.js", "use": "@vercel/node" }
-  ],
-  "routes": [{ "src": "/api/(.*)", "dest": "backend/server.js" }]
+  "buildCommand": "cd front && npm install && npm run build",
+  "outputDirectory": "front/.next",
+  "installCommand": "npm install --prefix front"
 }
