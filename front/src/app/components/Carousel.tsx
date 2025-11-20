@@ -22,7 +22,8 @@ export default function Carousel({ images }: Props) {
   // Se prop não fornecida, tenta buscar do backend
   useEffect(() => {
     if (!images) {
-      fetch("http://localhost:3001/api/carousel")
+      const base = process.env.NEXT_PUBLIC_API_URL || "";
+      fetch(`${base}/api/carousel`)
         .then((r) => (r.ok ? r.json() : []))
         .then(
           (

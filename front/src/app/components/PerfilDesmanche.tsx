@@ -35,12 +35,10 @@ export default function PerfilDesmanche() {
         return;
       }
       try {
-        const res = await fetch(
-          "http://localhost:3001/api/desmanches/meu-perfil",
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+        const base = process.env.NEXT_PUBLIC_API_URL || "";
+        const res = await fetch(`${base}/api/desmanches/meu-perfil`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         if (!res.ok) throw new Error("Falha ao carregar os dados do perfil.");
         const data = await res.json();
         setFormData(data);
@@ -98,14 +96,12 @@ export default function PerfilDesmanche() {
     }
 
     try {
-      const res = await fetch(
-        `http://localhost:3001/api/desmanches/${user.id}`,
-        {
-          method: "PUT",
-          headers: { Authorization: `Bearer ${token}` },
-          body: dadosFormulario,
-        }
-      );
+      const base = process.env.NEXT_PUBLIC_API_URL || "";
+      const res = await fetch(`${base}/api/desmanches/${user.id}`, {
+        method: "PUT",
+        headers: { Authorization: `Bearer ${token}` },
+        body: dadosFormulario,
+      });
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Erro ao atualizar desmanche");

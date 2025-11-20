@@ -1,6 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async rewrites() {
+    const dest = process.env.NEXT_PUBLIC_API_URL;
+    if (!dest) return [];
+    return [
+      {
+        source: '/api/:path*',
+        destination: `${dest}/api/:path*`
+      }
+    ];
+  },
   eslint: {
     // Permite build mesmo com erros de lint (útil para deploy rápido)
     ignoreDuringBuilds: true,

@@ -17,7 +17,7 @@ export default function PainelDashboard() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+    const apiBase = process.env.NEXT_PUBLIC_API_URL || "";
     let aborted = false;
     const controller = new AbortController();
 

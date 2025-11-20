@@ -27,7 +27,7 @@ function Home() {
     let cancelled = false;
     async function fetchDesmanchesVitrine() {
       setLoading(true);
-      const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+      const apiBase = process.env.NEXT_PUBLIC_API_URL || "";
       try {
         const response = await fetch(
           `${apiBase}/api/public/desmanches-vitrine?limit=3&page=${page}`
