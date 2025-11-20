@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import storage from "@/app/lib/storage";
+import { apiUrl } from "@/app/lib/api-base";
 
 interface PecaRow {
   id: number;
@@ -25,7 +26,7 @@ export default function AdminPecasPage() {
       setLoading(false);
       return;
     }
-    fetch("http://localhost:3001/api/admin/pecas", {
+    fetch(apiUrl("/api/admin/pecas"), {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((r) => (r.ok ? r.json() : Promise.reject(r)))
@@ -116,7 +117,8 @@ const td: React.CSSProperties = {
 };
 
 async function adminDeletePeca(id: number, token: string) {
-  const res = await fetch(`http://localhost:3001/api/admin/pecas/${id}`, {
+  const { apiUrl } = await import("@/app/lib/api-base");
+  const res = await fetch(apiUrl(`/api/admin/pecas/${id}`), {
     method: "DELETE",
     headers: { Authorization: `Bearer ${token}` },
   });

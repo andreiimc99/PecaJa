@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import "./Favoritos.css";
 import storage from "../lib/storage";
+import { apiUrl } from "../lib/api-base";
 
 // Estrutura vinda do backend (pecas p.*)
 interface PecaDb {
@@ -54,9 +55,7 @@ export default function FavoritosPage() {
         if (!token)
           throw new Error("Você precisa estar logado para ver seus favoritos.");
 
-        const apiBase =
-          process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
-        const res = await fetch(`${apiBase}/api/favoritos`, {
+        const res = await fetch(apiUrl("/api/favoritos"), {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (res.status === 401 || res.status === 403) {
@@ -85,11 +84,9 @@ export default function FavoritosPage() {
           const ids = storage.getJSON<number[]>("favoritos") || [];
           if (!ids.length) throw err; // se não houver favoritos locais, mantém o erro original
 
-          const apiBase =
-            process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
           const results = await Promise.all(
             ids.map(async (id) => {
-              const r = await fetch(`${apiBase}/api/pecas/public/${id}`);
+              const r = await fetch(apiUrl(`/api/pecas/public/${id}`));
               if (!r.ok) return null;
               const p = (await r.json()) as Partial<PecaDb> & {
                 id: number;
@@ -136,9 +133,7 @@ export default function FavoritosPage() {
         const updated = ids.filter((id) => id !== pecaId);
         storage.setJSON("favoritos", updated);
       } catch {}
-      const apiBase =
-        process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
-      const res = await fetch(`${apiBase}/api/favoritos/${pecaId}`, {
+      const res = await fetch(apiUrl(`/api/favoritos/${pecaId}`), {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

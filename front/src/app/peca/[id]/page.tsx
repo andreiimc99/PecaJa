@@ -9,6 +9,7 @@ import FavoriteButton from "@/app/components/FavoriteButton";
 import "./PecaDetalhe.css";
 import storage from "@/app/lib/storage";
 import { getStatusFavorito, toggleFavorito } from "@/app/lib/favoritos";
+import { apiUrl } from "@/app/lib/api-base";
 
 interface Peca {
   id: number;
@@ -84,7 +85,7 @@ export default function PaginaDetalhePeca() {
 
         try {
           // 1) Tenta endpoint protegido
-          const resPriv = await fetch(`http://localhost:3001/api/pecas/${id}`, {
+          const resPriv = await fetch(apiUrl(`/api/pecas/${id}`), {
             headers: token ? { Authorization: `Bearer ${token}` } : {},
           });
 
@@ -97,7 +98,7 @@ export default function PaginaDetalhePeca() {
           // 2) Se 401/403/404, tenta endpoint público de fallback
           if ([401, 403, 404].includes(resPriv.status)) {
             const resPub = await fetch(
-              `http://localhost:3001/api/pecas/public/${id}`
+              apiUrl(`/api/pecas/public/${id}`)
             );
             if (resPub.ok) {
               const data = await resPub.json();

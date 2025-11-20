@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import storage from "@/app/lib/storage";
+import { apiUrl } from "@/app/lib/api-base";
 
 interface Metrics {
   clientes?: number | { error: true };
@@ -23,7 +24,7 @@ export default function AdminMetricsPage() {
       setLoading(false);
       return;
     }
-    fetch("http://localhost:3001/api/admin/metrics", {
+    fetch(apiUrl("/api/admin/metrics"), {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((r) => (r.ok ? r.json() : Promise.reject(r)))

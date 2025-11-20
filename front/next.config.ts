@@ -6,9 +6,9 @@ const nextConfig: NextConfig = {
     if (!dest) return [];
     return [
       {
-        source: '/api/:path*',
-        destination: `${dest}/api/:path*`
-      }
+        source: "/api/:path*",
+        destination: `${dest}/api/:path*`,
+      },
     ];
   },
   eslint: {

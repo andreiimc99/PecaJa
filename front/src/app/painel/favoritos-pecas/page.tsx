@@ -4,6 +4,7 @@ import Image from "next/image"; // Migrar imagem para next/image
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import storage from "@/app/lib/storage";
+import { apiUrl } from "@/app/lib/api-base";
 
 interface FavoritoAggregado {
   id: number;
@@ -41,8 +42,7 @@ export default function FavoritosPecasPage() {
       router.replace("/login");
       return;
     }
-    const base = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
-    fetch(`${base}/api/favoritos/desmanche`, {
+    fetch(apiUrl("/api/favoritos/desmanche"), {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(async (res) => {

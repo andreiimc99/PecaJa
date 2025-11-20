@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import storage from "@/app/lib/storage";
+import { apiUrl } from "@/app/lib/api-base";
 
 interface UsuarioRow {
   id: number;
@@ -23,7 +24,7 @@ export default function AdminUsuariosPage() {
       setLoading(false);
       return;
     }
-    fetch("http://localhost:3001/api/admin/usuarios", {
+    fetch(apiUrl("/api/admin/usuarios"), {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((r) => (r.ok ? r.json() : Promise.reject(r)))
@@ -45,7 +46,7 @@ export default function AdminUsuariosPage() {
     if (!ok) return;
     try {
       setBusy(row.id);
-      const url = `http://localhost:3001/api/admin/usuarios/${kind}/${row.id}`;
+      const url = apiUrl(`/api/admin/usuarios/${kind}/${row.id}`);
       const res = await fetch(url, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },

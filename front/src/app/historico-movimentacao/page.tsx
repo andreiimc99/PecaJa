@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./historico.module.css";
 import storage from "../lib/storage";
+import { apiUrl } from "../lib/api-base";
 
 // Interface para definir a estrutura de um item do histórico
 interface Movimentacao {
@@ -35,7 +36,6 @@ export default function HistoricoPage() {
   const [lastStatus, setLastStatus] = useState<number | null>(null);
 
   useEffect(() => {
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
     let aborted = false;
     const controller = new AbortController();
     const carregar = async () => {
@@ -53,7 +53,7 @@ export default function HistoricoPage() {
         if (tipo !== "Todos") qs.set("tipo", tipo.toLowerCase());
         if (dataInicio) qs.set("de", dataInicio);
         if (dataFim) qs.set("ate", dataFim);
-        const finalUrl = `${apiBase}/api/pecas/historico?${qs.toString()}`;
+        const finalUrl = apiUrl(`/api/pecas/historico?${qs.toString()}`);
         setLastUrl(finalUrl);
         const res = await fetch(finalUrl, {
           headers,
@@ -135,8 +135,6 @@ export default function HistoricoPage() {
   // Exporta CSV do resultado filtrado
   const handleExport = async () => {
     try {
-      const apiBase =
-        process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
       const token = typeof window !== "undefined" ? storage.get("token") : null;
       const headers: Record<string, string> = { Accept: "application/json" };
       if (token) headers.Authorization = `Bearer ${token}`;
@@ -147,7 +145,8 @@ export default function HistoricoPage() {
       if (dataInicio) qs.set("de", dataInicio);
       if (dataFim) qs.set("ate", dataFim);
       const res = await fetch(
-        `${apiBase}/api/pecas/historico?${qs.toString()}`,
+        apiUrl(`/api/pecas/historico?${qs.toString()}`),
+      headers
         { headers }
       );
       if (!res.ok) throw new Error(`Falha export HTTP ${res.status}`);

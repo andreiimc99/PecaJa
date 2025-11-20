@@ -3,6 +3,7 @@
 import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import "../../painel-cliente/painel-cliente.css";
+import { apiUrl } from "../../lib/api-base";
 
 interface Cliente {
   id: number;
@@ -35,7 +36,7 @@ export default function PainelClientePage() {
       return;
     }
     const { id } = JSON.parse(u);
-    fetch(`http://localhost:3001/api/clientes/${id}`, {
+    fetch(apiUrl(`/api/clientes/${id}`), {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
@@ -53,7 +54,7 @@ export default function PainelClientePage() {
     setMsg("");
     const token = localStorage.getItem("token") || "";
     try {
-      const res = await fetch(`http://localhost:3001/api/clientes/${form.id}`, {
+      const res = await fetch(apiUrl(`/api/clientes/${form.id}`), {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

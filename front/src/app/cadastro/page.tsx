@@ -6,6 +6,7 @@ import Image from "next/image"; // Migrando <img> para <Image>
 import { useRouter } from "next/navigation";
 import { InputMask } from "@react-input/mask";
 import "./cadastro.css";
+import { apiUrl } from "../lib/api-base";
 
 export default function CadastroPage() {
   const router = useRouter();
@@ -49,7 +50,7 @@ export default function CadastroPage() {
 
     // AJUSTE: Lógica para direcionar para a API correta com o corpo correto
     if (tipoPessoa === "pf") {
-      endpoint = "http://localhost:3001/api/clientes";
+      endpoint = apiUrl("/api/clientes");
       // Envia via FormData para suportar upload opcional de imagem
       const fd = new FormData();
       fd.append("nome", form.nome);
@@ -63,7 +64,7 @@ export default function CadastroPage() {
       if (form.nome && form.cpf && form.email && form.senha) valid = true;
     } else {
       // tipoPessoa === 'pj'
-      endpoint = "http://localhost:3001/api/desmanches";
+      endpoint = apiUrl("/api/desmanches");
       // Mapeia o campo 'razaoSocial' do formulário para o campo 'nome' que o backend espera
       body = {
         nome: form.razaoSocial,

@@ -8,6 +8,7 @@ import { FaHeart } from "react-icons/fa";
 import ImportModal from "../components/ImportModal";
 import styles from "./produtodetalhe.module.css";
 import storage from "@/app/lib/storage";
+import { apiUrl } from "@/app/lib/api-base";
 
 interface Peca {
   id: number;
@@ -50,7 +51,7 @@ export default function ProdutoDetalhe() {
     }
     try {
       const res = await fetch(
-        `http://localhost:3001/api/pecas?desmanche_id=${usuario.id}`,
+        apiUrl(`/api/pecas?desmanche_id=${usuario.id}`),
         {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
         }
@@ -142,7 +143,7 @@ export default function ProdutoDetalhe() {
     }
 
     try {
-      const res = await fetch(`http://localhost:3001/api/pecas/${pecaId}`, {
+      const res = await fetch(apiUrl(`/api/pecas/${pecaId}`), {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -179,7 +180,7 @@ export default function ProdutoDetalhe() {
 
     try {
       setLoading(true);
-      const res = await fetch(`http://localhost:3001/api/pecas/${pecaId}`, {
+      const res = await fetch(apiUrl(`/api/pecas/${pecaId}`), {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -213,7 +214,7 @@ export default function ProdutoDetalhe() {
 
     setLoading(true);
 
-    fetch(`http://localhost:3001/api/pecas/exportar?template=true`, {
+    fetch(apiUrl(`/api/pecas/exportar?template=true`), {
       // 👈 Adicionado ?template=true
       method: "GET",
       headers: {
@@ -266,7 +267,7 @@ export default function ProdutoDetalhe() {
 
     setLoading(true);
 
-    fetch(`http://localhost:3001/api/pecas/importar`, {
+    fetch(apiUrl(`/api/pecas/importar`), {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -299,7 +300,7 @@ export default function ProdutoDetalhe() {
 
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:3001/api/pecas/exportar", {
+      const res = await fetch(apiUrl("/api/pecas/exportar"), {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

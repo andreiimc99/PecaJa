@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import "./perfil-cliente.css";
 import storage from "../lib/storage";
+import { apiUrl } from "../lib/api-base";
 
 interface Cliente {
   id: number;
@@ -30,7 +31,7 @@ export default function PerfilCliente() {
       return;
     }
 
-    fetch(`http://localhost:3001/api/clientes/${usr.id}`, {
+    fetch(apiUrl(`/api/clientes/${usr.id}`), {
       headers: {
         Authorization: `Bearer ${token}`,
       },

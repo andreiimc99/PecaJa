@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import "./cadastropecas.css";
 import storage from "../lib/storage";
+import { apiUrl } from "../lib/api-base";
 
 // A interface agora inclui o novo campo `quantidade_minima`.
 interface PecaForm {
@@ -56,7 +57,7 @@ export default function CadastroPecasPage() {
       if (!id || !token) return;
 
       setLoading(true);
-      fetch(`http://localhost:3001/api/pecas/${id}`, {
+      fetch(apiUrl(`/api/pecas/${id}`), {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then(async (res) => {
@@ -164,7 +165,7 @@ export default function CadastroPecasPage() {
       let res;
       if (editingId) {
         // Edição: envia PUT para a rota que aceita multipart (imagem opcional)
-        res = await fetch(`http://localhost:3001/api/pecas/${editingId}`, {
+        res = await fetch(apiUrl(`/api/pecas/${editingId}`), {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -181,7 +182,7 @@ export default function CadastroPecasPage() {
           setLoading(false);
           return;
         }
-        res = await fetch("http://localhost:3001/api/pecas", {
+        res = await fetch(apiUrl("/api/pecas"), {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,

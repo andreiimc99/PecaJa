@@ -32,14 +32,14 @@ app.get("/", (req, res) => {
 });
 
 // Rota de health para verificar conexão com o banco no Vercel
-app.get('/api/health', (req, res) => {
+app.get("/api/health", (req, res) => {
   const stats = {
     dbHostDefined: !!process.env.DB_HOST,
     dbNameDefined: !!process.env.DB_NAME,
-    nodeEnv: process.env.NODE_ENV || null
+    nodeEnv: process.env.NODE_ENV || null,
   };
   // Teste simples de query
-  db.query('SELECT 1 AS ok', (err, rows) => {
+  db.query("SELECT 1 AS ok", (err, rows) => {
     if (err) {
       return res.status(500).json({ ok: false, error: err.message, ...stats });
     }
@@ -60,7 +60,17 @@ function ensureFavoritosTable() {
     else console.log("[INIT] Tabela 'favoritos' verificada/criada.");
   });
 }
-ensureFavoritosTable();
+function runMigrations() {
+  if (process.env.RUN_MIGRATIONS === 'false') {
+    console.log('[INIT] Migrações desativadas por RUN_MIGRATIONS=false');
+    return;
+  }
+  ensureFavoritosTable();
+  ensureMovimentacoesEstoqueTable();
+  ensureMovimentacoesExtras();
+  ensureDesmancheDestaqueColumn();
+}
+runMigrations();
 
 function ensureMovimentacoesEstoqueTable() {
   const sql = `CREATE TABLE IF NOT EXISTS movimentacoes_estoque (
@@ -76,40 +86,56 @@ function ensureMovimentacoesEstoqueTable() {
     INDEX idx_mov_data (data_movimentacao)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;`;
   db.query(sql, (err) => {
-    if (err) console.error("[INIT] Erro ao criar tabela movimentacoes_estoque:", err);
-    else console.log("[INIT] Tabela 'movimentacoes_estoque' verificada/criada.");
+    if (err)
+      console.error("[INIT] Erro ao criar tabela movimentacoes_estoque:", err);
+    else
+      console.log("[INIT] Tabela 'movimentacoes_estoque' verificada/criada.");
   });
 }
-ensureMovimentacoesEstoqueTable();
 
 function ensureMovimentacoesExtras() {
   const checkCol = `SELECT COUNT(*) AS cnt FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'movimentacoes_estoque' AND COLUMN_NAME = 'peca_nome_snapshot'`;
   db.query(checkCol, (err, rows) => {
     if (err) {
-      console.error("[INIT] Falha ao verificar coluna peca_nome_snapshot:", err);
+      console.error(
+        "[INIT] Falha ao verificar coluna peca_nome_snapshot:",
+        err
+      );
     } else if (rows && rows[0] && rows[0].cnt === 0) {
-      const alter = "ALTER TABLE movimentacoes_estoque ADD COLUMN peca_nome_snapshot VARCHAR(255) NULL AFTER quantidade_movimentada";
+      const alter =
+        "ALTER TABLE movimentacoes_estoque ADD COLUMN peca_nome_snapshot VARCHAR(255) NULL AFTER quantidade_movimentada";
       db.query(alter, (aErr) => {
-        if (aErr) console.error("[INIT] Erro ao adicionar coluna peca_nome_snapshot:", aErr);
-        else console.log("[INIT] Coluna peca_nome_snapshot adicionada a movimentacoes_estoque.");
+        if (aErr)
+          console.error(
+            "[INIT] Erro ao adicionar coluna peca_nome_snapshot:",
+            aErr
+          );
+        else
+          console.log(
+            "[INIT] Coluna peca_nome_snapshot adicionada a movimentacoes_estoque."
+          );
       });
     } else {
       console.log("[INIT] Coluna peca_nome_snapshot já existe.");
     }
   });
 }
-ensureMovimentacoesExtras();
 
 // Garantir coluna 'destaque' na tabela desmanches (para marcar em destaque na vitrine)
 function ensureDesmancheDestaqueColumn() {
   const checkCol = `SELECT COUNT(*) AS cnt FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'desmanches' AND COLUMN_NAME = 'destaque'`;
   db.query(checkCol, (err, rows) => {
     if (err) {
-      console.error("[INIT] Falha ao verificar coluna destaque em desmanches:", err);
+      console.error(
+        "[INIT] Falha ao verificar coluna destaque em desmanches:",
+        err
+      );
     } else if (rows && rows[0] && rows[0].cnt === 0) {
-      const alter = "ALTER TABLE desmanches ADD COLUMN destaque TINYINT(1) NOT NULL DEFAULT 0 AFTER role";
+      const alter =
+        "ALTER TABLE desmanches ADD COLUMN destaque TINYINT(1) NOT NULL DEFAULT 0 AFTER role";
       db.query(alter, (aErr) => {
-        if (aErr) console.error("[INIT] Erro ao adicionar coluna destaque:", aErr);
+        if (aErr)
+          console.error("[INIT] Erro ao adicionar coluna destaque:", aErr);
         else console.log("[INIT] Coluna 'destaque' adicionada a desmanches.");
       });
     } else {
@@ -117,7 +143,6 @@ function ensureDesmancheDestaqueColumn() {
     }
   });
 }
-ensureDesmancheDestaqueColumn();
 
 // Rotas de autenticação e login
 app.use("/api/login", loginRoutes);
@@ -126,8 +151,8 @@ app.use("/api/desmanches", desmancheRoutes);
 app.use("/api/pecas", pecaRoutes);
 app.use("/api/favoritos", authenticate, favoritosRoutes);
 app.use("/api/carousel", carouselRoutes);
-app.use('/api/admin', adminRoutes);
-app.use('/api/public', publicRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/public", publicRoutes);
 
 // Middleware global de tratamento de erros para evitar página HTML
 app.use((err, req, res, next) => {

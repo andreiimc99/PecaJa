@@ -3,6 +3,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
 import storage from "@/app/lib/storage";
 import styles from "./carousel-admin.module.css";
+import { apiUrl } from "@/app/lib/api-base";
 
 interface Banner {
   id: number;
@@ -26,15 +27,15 @@ export default function CarouselAdminPage() {
   const usuario = storage.getJSON<{ role: string }>("usuario");
 
   useEffect(() => {
-    const url =
+    const endpoint =
       token && usuario?.role === "desmanche"
-        ? "http://localhost:3001/api/carousel/admin"
-        : "http://localhost:3001/api/carousel";
+        ? "/api/carousel/admin"
+        : "/api/carousel";
     const headers: Record<string, string> = {};
-    if (url.endsWith("/admin") && token)
+    if (endpoint.endsWith("/admin") && token)
       headers["Authorization"] = `Bearer ${token}`;
 
-    fetch(url, { headers })
+    fetch(apiUrl(endpoint), { headers })
       .then((r) => (r.ok ? r.json() : []))
       .then((rows: Banner[]) => setBanners(rows))
       .catch(() => setBanners([]))
@@ -43,14 +44,14 @@ export default function CarouselAdminPage() {
 
   const refresh = () => {
     setLoading(true);
-    const url =
+    const endpoint =
       token && usuario?.role === "desmanche"
-        ? "http://localhost:3001/api/carousel/admin"
-        : "http://localhost:3001/api/carousel";
+        ? "/api/carousel/admin"
+        : "/api/carousel";
     const headers: Record<string, string> = {};
-    if (url.endsWith("/admin") && token)
+    if (endpoint.endsWith("/admin") && token)
       headers["Authorization"] = `Bearer ${token}`;
-    fetch(url, { headers })
+    fetch(apiUrl(endpoint), { headers })
       .then((r) => (r.ok ? r.json() : []))
       .then((rows: Banner[]) => setBanners(rows))
       .catch(() => setBanners([]))
@@ -75,7 +76,7 @@ export default function CarouselAdminPage() {
     if (title) fd.append("title", title);
     if (targetUrl) fd.append("target_url", targetUrl);
     try {
-      const res = await fetch("http://localhost:3001/api/carousel", {
+      const res = await fetch(apiUrl("/api/carousel"), {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: fd,
@@ -116,7 +117,7 @@ export default function CarouselAdminPage() {
       return;
     }
     try {
-      const res = await fetch(`http://localhost:3001/api/carousel/${id}`, {
+      const res = await fetch(apiUrl(`/api/carousel/${id}`), {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -157,7 +158,7 @@ export default function CarouselAdminPage() {
     }
     try {
       const res = await fetch(
-        `http://localhost:3001/api/carousel/${id}/toggle`,
+        apiUrl(`/api/carousel/${id}/toggle`),
         {
           method: "PATCH",
           headers: { Authorization: `Bearer ${token}` },

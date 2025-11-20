@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import storage from "@/app/lib/storage";
+import { apiUrl } from "@/app/lib/api-base";
 
 interface FavRow {
   peca_id: number;
@@ -20,7 +21,7 @@ export default function AdminFavoritosPage() {
       setLoading(false);
       return;
     }
-    fetch("http://localhost:3001/api/admin/favoritos", {
+    fetch(apiUrl("/api/admin/favoritos"), {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((r) => (r.ok ? r.json() : Promise.reject(r)))

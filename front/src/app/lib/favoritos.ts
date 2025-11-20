@@ -1,11 +1,10 @@
 import storage from "../lib/storage";
-
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+import { apiUrl } from "./api-base";
 
 export async function getStatusFavorito(pecaId: number): Promise<boolean> {
   const token = storage.get("token");
   if (!token) return false; // não logado, não favorito
-  const res = await fetch(`${API_BASE}/api/favoritos/status/${pecaId}`, {
+  const res = await fetch(apiUrl(`/api/favoritos/status/${pecaId}`), {
     headers: { Authorization: `Bearer ${token}` },
     cache: "no-store",
   });

@@ -8,6 +8,7 @@ import Busca from "../components/Busca";
 // Importa o CSS da Busca no nível da página para garantir que os estilos sejam aplicados
 import "../components/Busca.css";
 import storage from "../lib/storage";
+import { apiUrl } from "../lib/api-base";
 
 // AJUSTE: A interface agora inclui o novo campo 'nome_desmanche'.
 interface Item {
@@ -45,7 +46,7 @@ export default function PaginaBusca() {
       const token = storage.get("token") ?? "";
 
       try {
-        const response = await fetch("http://localhost:3001/api/pecas", {
+        const response = await fetch(apiUrl("/api/pecas"), {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
         });
         if (!response.ok) {

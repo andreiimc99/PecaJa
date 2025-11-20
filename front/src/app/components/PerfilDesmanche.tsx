@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import styles from "../perfil-desmanche/perfil-desmanche.module.css";
 import storage from "@/app/lib/storage";
+import { apiUrl } from "@/app/lib/api-base";
 
 interface DesmancheData {
   nome: string;
@@ -143,7 +144,7 @@ export default function PerfilDesmanche() {
     try {
       setDeleting(true);
       const res = await fetch(
-        `http://localhost:3001/api/desmanches/${user.id}`,
+        apiUrl(`/api/desmanches/${user.id}`),
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import "./painel-cliente.css";
 import storage from "../lib/storage";
+import { apiUrl } from "../lib/api-base";
 
 interface Cliente {
   id: number;
@@ -38,7 +39,7 @@ export default function PainelCliente() {
       return;
     }
     const { id } = uObj;
-    fetch(`http://localhost:3001/api/clientes/${id}`, {
+    fetch(apiUrl(`/api/clientes/${id}`), {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {
@@ -76,7 +77,7 @@ export default function PainelCliente() {
       if (foto) fd.append("foto_url", foto);
 
       const res = await fetch(
-        `http://localhost:3001/api/clientes/${formData.id}`,
+        apiUrl(`/api/clientes/${formData.id}`),
         {
           method: "PUT",
           headers: { Authorization: `Bearer ${token}` },

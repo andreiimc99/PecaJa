@@ -15,6 +15,7 @@ import {
 import FavoriteButton from "@/app/components/FavoriteButton";
 import "./DesmanchePerfil.css";
 import storage from "../../lib/storage";
+import { apiUrl } from "../../lib/api-base";
 
 // ... (Interfaces ItemEstoque e Desmanche permanecem as mesmas) ...
 interface ItemEstoque {
@@ -88,7 +89,7 @@ export default function PaginaPerfilDesmanche() {
     const fetchDesmanche = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3001/api/desmanches/${encodeURIComponent(id)}`,
+          apiUrl(`/api/desmanches/${encodeURIComponent(id)}`),
           { headers: { Authorization: `Bearer ${token}` } }
         );
 

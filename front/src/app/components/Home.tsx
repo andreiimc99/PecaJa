@@ -119,7 +119,9 @@ function Home() {
               >
                 Anterior
               </button>
-              <span className="pager-info">Página {page + 1} de {Math.max(1, pageCount)}</span>
+              <span className="pager-info">
+                Página {page + 1} de {Math.max(1, pageCount)}
+              </span>
               <button
                 className="pager-btn"
                 onClick={() => setPage((p) => Math.min(pageCount - 1, p + 1))}
