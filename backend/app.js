@@ -31,6 +31,22 @@ app.get("/", (req, res) => {
   res.send("API PeçaJá rodando! 🚀");
 });
 
+// Rota de health para verificar conexão com o banco no Vercel
+app.get('/api/health', (req, res) => {
+  const stats = {
+    dbHostDefined: !!process.env.DB_HOST,
+    dbNameDefined: !!process.env.DB_NAME,
+    nodeEnv: process.env.NODE_ENV || null
+  };
+  // Teste simples de query
+  db.query('SELECT 1 AS ok', (err, rows) => {
+    if (err) {
+      return res.status(500).json({ ok: false, error: err.message, ...stats });
+    }
+    res.json({ ok: true, result: rows && rows[0], ...stats });
+  });
+});
+
 // Reusar as mesmas funções de migração/garantia de tabelas do server.js original
 function ensureFavoritosTable() {
   const sql = `CREATE TABLE IF NOT EXISTS favoritos (
