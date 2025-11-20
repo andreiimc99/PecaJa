@@ -78,7 +78,8 @@ function ensureClientesTable() {
     UNIQUE KEY uq_clientes_email (email)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;`;
   db.query(sql, (err) => {
-    if (err) console.error("[INIT] Erro ao criar/verificar tabela clientes:", err);
+    if (err)
+      console.error("[INIT] Erro ao criar/verificar tabela clientes:", err);
     else console.log("[INIT] Tabela 'clientes' verificada/criada.");
   });
 }
@@ -103,7 +104,8 @@ function ensureDesmanchesTable() {
     UNIQUE KEY uq_desmanches_email (email)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;`;
   db.query(sql, (err) => {
-    if (err) console.error("[INIT] Erro ao criar/verificar tabela desmanches:", err);
+    if (err)
+      console.error("[INIT] Erro ao criar/verificar tabela desmanches:", err);
     else console.log("[INIT] Tabela 'desmanches' verificada/criada.");
   });
 }
@@ -112,12 +114,41 @@ function runMigrations() {
     console.log("[INIT] Migrações desativadas por RUN_MIGRATIONS=false");
     return;
   }
+  ensurePecasTable();
   ensureClientesTable();
   ensureDesmanchesTable();
   ensureFavoritosTable();
   ensureMovimentacoesEstoqueTable();
   ensureMovimentacoesExtras();
   ensureDesmancheDestaqueColumn();
+}
+
+// Cria tabela pecas se não existir (referenciada em movimentações e outras rotas)
+function ensurePecasTable() {
+  const sql = `CREATE TABLE IF NOT EXISTS pecas (
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(150) NOT NULL,
+    descricao TEXT NOT NULL,
+    preco DECIMAL(10,2) NOT NULL DEFAULT 0,
+    quantidade INT NOT NULL DEFAULT 0,
+    marca VARCHAR(100) NOT NULL,
+    modelo VARCHAR(100) NOT NULL,
+    ano VARCHAR(10) NOT NULL,
+    tipo VARCHAR(100) NOT NULL,
+    foto_url VARCHAR(500) NULL,
+    desmanche_id INT NOT NULL,
+    quantidade_minima INT NULL,
+    interesses_count INT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    INDEX idx_pecas_desmanche (desmanche_id),
+    INDEX idx_pecas_tipo (tipo),
+    CONSTRAINT fk_pecas_desmanche FOREIGN KEY (desmanche_id) REFERENCES desmanches(id) ON DELETE CASCADE
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;`;
+  db.query(sql, (err) => {
+    if (err) console.error("[INIT] Erro ao criar/verificar tabela pecas:", err);
+    else console.log("[INIT] Tabela 'pecas' verificada/criada.");
+  });
 }
 runMigrations();
 

@@ -14,6 +14,25 @@ const stream = require("stream");
 // Configura o Multer para upload em memória
 const upload = multer({ storage: multer.memoryStorage() });
 
+// Configuração Cloudinary (se variáveis existirem). Evita falha silenciosa no upload.
+if (
+  process.env.CLOUDINARY_CLOUD_NAME &&
+  process.env.CLOUDINARY_API_KEY &&
+  process.env.CLOUDINARY_API_SECRET
+) {
+  cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+    secure: true,
+  });
+  console.log("[CLOUDINARY] Configurado para pecas");
+} else {
+  console.log(
+    "[CLOUDINARY] Variáveis ausentes (CLOUDINARY_*). Upload de imagem de peça ficará desativado."
+  );
+}
+
 // Rota pública de diagnóstico: busca peça por ID sem exigir token.
 // Útil para validar rapidamente se o registro existe e qual DB estamos consultando.
 router.get("/public/:id", (req, res) => {
@@ -75,18 +94,25 @@ router.post(
     }
 
     try {
+      // Upload opcional: se não houver credenciais ou arquivo, seguimos sem foto.
       if (req.file) {
-        const b64 = Buffer.from(req.file.buffer).toString("base64");
-        let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
-        const resultadoUpload = await cloudinary.uploader.upload(dataURI, {
-          folder: "pecas",
-          resource_type: "auto",
-        });
-        fotoUrlFinal = resultadoUpload.secure_url;
-      } else {
-        return res
-          .status(400)
-          .json({ error: "A imagem da peça é obrigatória." });
+        if (cloudinary.config().cloud_name) {
+          try {
+            const b64 = Buffer.from(req.file.buffer).toString("base64");
+            const dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+            const resultadoUpload = await cloudinary.uploader.upload(dataURI, {
+              folder: "pecas",
+              resource_type: "auto",
+            });
+            fotoUrlFinal = resultadoUpload.secure_url;
+          } catch (upErr) {
+            console.error("[PECA] Falha upload Cloudinary, seguindo sem foto.", upErr);
+            fotoUrlFinal = null;
+          }
+        } else {
+          console.warn("[PECA] Cloudinary não configurado; peça criada sem foto.");
+          fotoUrlFinal = null;
+        }
       }
 
       const sql = `
@@ -147,7 +173,7 @@ router.post(
       );
     } catch (err) {
       console.error("Erro no cadastro da peça:", err);
-      res.status(500).json({ error: "Erro ao processar imagem da peça." });
+      res.status(500).json({ error: "Erro ao criar peça (imagem/operação)." });
     }
   }
 );
