@@ -1,0 +1,180 @@
+/* src/app/perfil-desmanche/perfil-desmanche.module.css */
+/* ... (todo o seu CSS existente permanece aqui) ... */
+.perfilContainer {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: "Inter", sans-serif;
+}
+
+.perfilContainer h1 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  color: #f55404;
+  text-align: left;
+}
+
+.perfilContainer form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.perfilContainer label {
+  font-weight: 600;
+  color: #444;
+  font-size: 1.1rem;
+}
+
+.perfilContainer input,
+.perfilContainer textarea {
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.2s ease;
+  background-color: #fafcfb;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.perfilContainer input:focus,
+.perfilContainer textarea:focus {
+  border-color: #f55404;
+  outline: none;
+}
+
+.perfilReadonly {
+  background-color: #e9ecef !important;
+  color: #000;
+  cursor: not-allowed;
+}
+
+.perfilBtn {
+  background: #f55404;
+  color: #fff;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  margin-top: 10px;
+}
+
+.perfilBtn:hover {
+  background: #d94303;
+  transform: translateY(-2px) scale(1.02);
+}
+
+.perfilMsg {
+  margin-top: 14px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f8d7da;
+  color: #721c24;
+  font-weight: 600;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.perfilMsg:empty {
+  display: none;
+}
+
+/* AJUSTE: Novas classes para o campo de upload */
+.uploadContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.fotoPreview {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #f0f0f0;
+  background-color: #f8f8f8;
+}
+
+.fileInput {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.fileInput::file-selector-button {
+  background-color: #f55404;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-right: 10px;
+}
+
+.fileInput::file-selector-button:hover {
+  background-color: #d94303;
+}
+
+/* Layout desktop em duas colunas */
+.perfilLayout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.perfilMain {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.perfilSide {
+  display: block;
+}
+
+.stickySide {
+  position: sticky;
+  top: 16px;
+}
+
+.sectionCard {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.sectionTitle {
+  margin: 0 0 12px 0;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 700;
+}
+
+.actionsRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .perfilLayout {
+    grid-template-columns: 1fr;
+  }
+  .stickySide {
+    position: static;
+  }
+}

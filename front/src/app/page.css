@@ -1,0 +1,47 @@
+/* page.css - estilos de layout específicos para a página inicial */
+
+.home-hero {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column; /* empilha carrossel e home */
+  gap: 24px; /* espaço entre carrossel e home */
+  align-items: center; /* centraliza ambos os blocos */
+  padding: 6px 20px 30px 20px;
+}
+
+/* wrappers antigos não são mais necessários; se existirem, apenas ocupam 100% e centralizam */
+.home-hero-left,
+.home-hero-right {
+  width: 100%;
+  display: contents; /* não cria caixas extras, usa os filhos diretamente */
+}
+
+/* Quando o Home estiver dentro da home-hero, força-o a ocupar 100% da coluna direita
+   e ajusta o alinhamento para que os elementos não tentem se centralizar em vista estreita */
+.home-hero .home-container {
+  max-width: 1200px; /* largura web/desktop para mostrar múltiplos cards por linha */
+  width: 100%;
+  margin: 0 auto; /* centraliza o conteúdo dentro da seção */
+  padding: 0; /* padding controlado pela seção */
+  text-align: center;
+}
+
+/* Força o carrossel a usar 100% da coluna esquerda e reduz max-width local */
+.home-hero .carousel {
+  max-width: 1200px; /* largura do carrossel acompanhando o container desktop */
+  width: 100%;
+}
+
+/* Ajustes responsivos: em telas pequenas, volta ao layout vertical */
+@media (max-width: 900px) {
+  .home-hero {
+    gap: 18px;
+    padding: 0 12px 20px 12px;
+  }
+  .home-hero .home-container {
+    text-align: center;
+    padding-top: 10px;
+  }
+}

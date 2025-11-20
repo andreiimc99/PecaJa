@@ -1,0 +1,167 @@
+/* painel-cliente.css */
+
+.painel-cliente-container {
+  /* Removido max-width para permitir que o container se expanda mais */
+  margin: 40px auto; /* Mantém a centralização horizontal e espaçamento vertical */
+  padding: 30px 40px; /* Aumenta o padding lateral para mais respiro horizontal */
+  background-color: #ffffff; /* Fundo branco puro */
+  border-radius: 12px; /* Cantos arredondados, consistente com outros cards */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* Sombra mais pronunciada mas suave */
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Fonte moderna e limpa */
+  border: 1px solid #e0e0e0; /* Borda sutil para definir o contêiner */
+  width: calc(100% - 80px); /* Ocupa quase 100% da largura, com margem de 40px de cada lado */
+  /* Você pode ajustar o '80px' (40px + 40px) para controlar o afastamento das bordas da tela.
+     Por exemplo, para ficar mais próximo das bordas em telas grandes, use um valor menor como '40px' ou '60px'. */
+  max-width: 900px; /* Um novo max-width, se você ainda quiser um limite, mas bem maior */
+}
+
+.painel-cliente-container h1 {
+  font-size: 2.2em;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.botao-voltar {
+  background-color: #6c7a89;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: bold;
+  font-size: 1em;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.botao-voltar:hover {
+  background-color: #5a6572;
+  transform: translateY(-2px);
+}
+
+.form-cliente {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* Opcional: Adicionar um max-width e margin auto para o formulário interno,
+     se o contêiner ficar muito largo e o formulário precisar de limite. */
+  /* max-width: 700px; */
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #34495e;
+  font-size: 0.95em;
+}
+
+.campo input {
+  padding: 12px 16px;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  font-size: 1em;
+  background-color: #f8f8f8;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  color: #333;
+  width: 100%;
+}
+
+.campo input:focus {
+  border-color: #27ae60;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2);
+  background-color: #fff;
+}
+
+.campo input[readOnly] {
+  background-color: #eceff1;
+  color: #777;
+  cursor: not-allowed;
+}
+
+.botoes {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.botao-salvar {
+  background-color: #e04300;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 1.05em;
+  flex-shrink: 0;
+}
+
+.botao-salvar:hover {
+  background-color: #f55404;
+  transform: translateY(-2px);
+}
+
+.mensagem-sucesso {
+  color: #219d55;
+  margin-left: 0;
+  font-weight: 600;
+  font-size: 1em;
+  padding: 8px 15px;
+  background-color: #e6f7ed;
+  border-radius: 6px;
+  border: 1px solid #27ae60;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) { /* Ajustado o breakpoint para telas um pouco maiores */
+  .painel-cliente-container {
+    width: calc(100% - 40px); /* Em telas menores, diminui as margens laterais */
+    padding: 25px 20px; /* Reduz o padding em telas menores */
+    margin: 20px auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .painel-cliente-container h1 {
+    font-size: 2em;
+  }
+
+  .botao-voltar,
+  .botao-salvar {
+    padding: 12px 20px;
+    font-size: 0.95em;
+  }
+
+  .botoes {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .mensagem-sucesso {
+    margin-top: 10px;
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .campo input {
+      font-size: 0.95em;
+  }
+}

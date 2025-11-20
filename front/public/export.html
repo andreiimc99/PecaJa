@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Exportar CSV - PecaJa Demo</title>
+    <style>
+      body { font-family: system-ui, Arial; padding: 32px; background:#f7f7f8 }
+      .card { max-width:720px; margin:0 auto; background:#fff; padding:24px; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.06) }
+      label,input,button{display:block;width:100%}
+      input{padding:8px;margin:8px 0 16px;border:1px solid #ddd;border-radius:6px}
+      button{padding:10px;background:#0366d6;color:#fff;border:none;border-radius:6px;cursor:pointer}
+      small{color:#666}
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Exportar base de produtos (CSV)</h1>
+      <p>Cole aqui o token <code>Bearer &lt;token&gt;</code> ou apenas o token e clique em "Exportar".</p>
+
+      <label for="token">Token (com ou sem o prefixo "Bearer ")</label>
+      <input id="token" placeholder="Cole o token aqui" aria-label="token" />
+
+      <button id="exportBtn">Exportar CSV</button>
+      <p><small>O servidor de exemplo está em <code>/download-csv</code> e precisa do header <code>Authorization: Bearer &lt;token&gt;</code>.</small></p>
+      <div id="msg" style="margin-top:12px;color:#a00"></div>
+    </div>
+
+    <script src="/export.js"></script>
+  </body>
+</html>
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Exportar CSV</title>
+    <style>
+      body { font-family: Arial, sans-serif; padding: 24px; }
+      label { display: block; margin-bottom: 12px; }
+      input[type=text] { width: 100%; max-width: 520px; padding: 8px; }
+      button { padding: 8px 12px; }
+      #status { margin-top: 12px; color: #333; }
+    </style>
+  </head>
+  <body>
+    <h1>Exportar CSV (exemplo)</h1>
+    <p>Cole um token no formato <code>Bearer &lt;token&gt;</code> (ou apenas o token) e clique em <strong>Download CSV</strong>.</p>
+    <label>
+      Token
+      <input id="token" type="text" placeholder="Cole aqui o token" />
+    </label>
+    <button id="download">Download CSV</button>
+    <div id="status"></div>
+
+    <script src="./export.js"></script>
+  </body>
+</html>

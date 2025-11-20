@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset básico para todos os elementos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Variáveis globais de tema (cores) */
+:root {
+  --brand: #f55404; /* laranja principal */
+  --brand-dark: #c34303;
+  --blue: #007bff;
+  --blue-dark: #0056b3;
+  --success: #28a745;
+  --success-dark: #218838;
+  --danger: #e74c3c;
+  --danger-dark: #c0392b;
+  --muted: #666666;
+  --card-bg: #ffffff;
+  --card-border: #dddddd;
+}
+
+html,
+body {
+  height: 100%; /* Garante que html e body ocupem 100% da altura da viewport */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex; /* Usa flexbox para o layout principal */
+  flex-direction: column; /* Organiza os filhos em coluna (navbar, conteúdo, footer) */
+  /* Tipografia e cor de texto globais amigáveis ao desktop */
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  color: #111827; /* gray-900 */
+  background-color: #f7f8fa; /* leve cinza de fundo */
+}
+
+/* Esta classe fará com que a div ocupe todo o espaço disponível
+   entre o navbar e o footer, empurrando o footer para baixo. */
+.main-content-wrapper {
+  flex-grow: 1; /* Faz com que esta div ocupe todo o espaço restante */
+  display: flex; /* Para centralizar o conteúdo dentro dela */
+  justify-content: center; /* Centraliza horizontalmente o conteúdo (ex: PerfilCliente) */
+  align-items: flex-start; /* Alinha o conteúdo ao topo da área, sem empurrá-lo para o meio verticalmente */
+  padding: 40px 20px; /* Adiciona preenchimento ao redor do conteúdo principal */
+}
+
+/* Se você tiver um footer com a tag <footer>, pode adicionar estilos aqui ou via Tailwind */
+footer {
+  /* Exemplo de estilos básicos para o footer. Adapte às suas necessidades. */
+  background-color: #1e2a38; /* Cor de fundo do seu footer */
+  color: #fff;
+  padding: 20px 0; /* Ajuste o padding conforme o design do seu footer */
+  width: 100%; /* Garante que o footer ocupe toda a largura */
+  /* Outros estilos do seu footer... */
+}

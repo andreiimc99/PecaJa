@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Estilos Globais e Background */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Inter', 'Arial', sans-serif;
+    /* Fonte 'Inter' aplicada como padrão */
+}
+
+/* Container principal */
+.cadastro-container {
+    min-height: 100vh;
+    padding-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Centraliza verticalmente para um look mais clean */
+    padding-bottom: 40px;
+    box-sizing: border-box;
+}
+
+/* Contêiner único para imagem e formulário */
+.content-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* Fundo claro para o formulário se destacar do background escuro */
+    background: #FFFFFF;
+    border-radius: 16px;
+    /* Bordas mais arredondadas */
+    padding: 40px;
+    /* Sombra mais sutil e moderna */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    width: 100%;
+    max-width: 950px;
+    gap: 40px;
+    /* Aumenta o espaço entre a imagem e o form */
+}
+
+/* Imagem */
+.image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.side-image {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+}
+
+/* Formulário */
+.form-container {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.cadastro-title {
+    font-size: 28px;
+    font-weight: 700;
+    /* Cor de texto mais sóbria */
+    color: #334155;
+    margin-bottom: 30px;
+    text-align: left;
+    /* Alinhamento à esquerda para um look profissional */
+}
+
+.cadastro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+}
+
+/* AJUSTE PESSOA JURÍDICA: Estilos para o seletor de Tipo de Pessoa */
+.tipo-pessoa-selector {
+    display: flex;
+    gap: 10px;
+    background-color: #F8F9FA;
+    padding: 5px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #D1D5DB;
+}
+
+.tipo-pessoa-selector label {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 10px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s;
+    text-align: center;
+    font-weight: 500;
+    color: #334155;
+}
+
+.tipo-pessoa-selector input[type="radio"] {
+    display: none;
+    /* Esconde o botão de rádio padrão */
+}
+
+/* Estilo para a opção selecionada */
+.tipo-pessoa-selector input[type="radio"]:checked+span {
+    color: #FFFFFF;
+}
+
+.tipo-pessoa-selector label:has(input[type="radio"]:checked) {
+    background-color: #f55404;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.cadastro-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+    text-align: left;
+    width: 100%;
+}
+
+.cadastro-input {
+    width: 100%;
+    height: 48px;
+    border: 1px solid #D1D5DB;
+    /* Borda cinza clara */
+    border-radius: 8px;
+    padding: 0 15px;
+    font-size: 16px;
+    color: #334155;
+    background-color: #F8F9FA;
+    /* Fundo do input sutilmente diferente */
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+
+.cadastro-input::placeholder {
+    color: #9CA3AF;
+    /* Cor do placeholder mais suave */
+}
+
+.cadastro-input:focus {
+    /* Destaque com o azul */
+    border-color: #e04300;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    background-color: #FFFFFF;
+}
+
+/* Botão de Cadastro */
+.cadastro-button {
+    width: 100%;
+    height: 50px;
+    /* Cor de destaque azul */
+    background: #f55404;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+    /* Espaço extra antes do botão */
+}
+
+.cadastro-button:hover {
+    /* Efeito hover mais escuro */
+    background-color: #e04300;
+    transform: translateY(-2px);
+    /* Pequeno efeito de elevação */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .cadastro-container {
+        padding: 20px;
+        align-items: flex-start;
+    }
+
+    .content-container {
+        flex-direction: column;
+        padding: 30px 20px;
+    }
+
+    .image-container {
+        display: none;
+        /* Em telas pequenas, focar no formulário é uma boa prática */
+    }
+
+    .cadastro-title {
+        font-size: 24px;
+        text-align: center;
+        /* Centralizar o título no mobile */
+    }
+}

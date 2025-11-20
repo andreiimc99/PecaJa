@@ -1,0 +1,94 @@
+/* Carousel.css */
+
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 1280px; /* largura máxima um pouco maior */
+  margin: 0 auto 30px auto;
+  display: flex;
+  align-items: center;
+  /* Alturas configuráveis por variáveis CSS */
+  --carousel-h-sm: 300px; /* mobile */
+  --carousel-h-md: 440px;
+  --carousel-h-lg: 300px;
+}
+
+.carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 0; /* sem espaçamento entre slides quando mostra 1 por vez */
+  transition: transform 0.45s ease;
+  will-change: transform;
+  padding: 50px 0px; /* pequeno padding interno para respirar */
+}
+
+.carousel-slide {
+  min-width: 100%; /* mostra 1 slide por vez */
+  display: flex;
+  justify-content: center;
+  padding: 0; /* remove padding para centralizar a imagem e usar gap */
+  box-sizing: border-box;
+}
+
+/* Estilo para a imagem do slide */
+.carousel-image {
+  width: 100%;
+  height: var(--carousel-h-sm);
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.18s ease, transform 0.12s ease,
+    box-shadow 0.12s ease;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  z-index: 5;
+}
+
+.carousel-button:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-50%) translateY(-3px);
+}
+
+.carousel-button.prev {
+  left: 8px;
+}
+.carousel-button.next {
+  right: 8px;
+}
+
+/* Mantém sempre 1 slide por vez (min-width: 100%) em qualquer breakpoint */
+
+/* Estilos adicionais para imagens do carrossel em diferentes larguras */
+@media (min-width: 900px) {
+  .carousel-image {
+    height: var(--carousel-h-md);
+    border-radius: 10px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .carousel-image {
+    height: var(--carousel-h-lg);
+  }
+}

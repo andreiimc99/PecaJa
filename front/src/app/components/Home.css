@@ -1,0 +1,155 @@
+/* Home.css */
+
+.home-container {
+  width: 100%; /* Ocupa 100% da largura do .main-content-wrapper */
+  max-width: 1200px; /* Largura máxima para o conteúdo da home */
+  margin: 0 auto; /* Centraliza o conteúdo da home horizontalmente dentro do .main-content-wrapper */
+  padding: 20px; /* Adiciona um padding interno para não colar nas bordas */
+  /* Removido background-color e min-height, pois são tratados pelo layout global (body e .main-content-wrapper) */
+  text-align: center; /* Centraliza o Pesquisa componente e os cards */
+  display: flex; /* Garante centralização robusta dos filhos */
+  flex-direction: column;
+  align-items: center; /* Centraliza horizontalmente os conteúdos internos */
+}
+
+/* Estilos para o componente Pesquisa (assumindo que ele está dentro de home-container) */
+/* Se Pesquisa tiver um CSS próprio, essas regras podem ser mais específicas lá. */
+.home-container > div:first-child {
+  /* Isso visa a div do Pesquisa, se ela for a primeira filha direta */
+  margin-bottom: 36px; /* Espaço abaixo da seção de pesquisa (mais compacto) */
+}
+
+.desmanches-container {
+  /* Wrapper para a vitrine; o layout de colunas agora é controlado por .desmanches-grid */
+  display: block;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.desmanche-card {
+  background-color: #ffffff; /* Fundo branco para os cards */
+  border-radius: 12px; /* Cantos arredondados, harmonizando com o perfil-container */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra mais suave e moderna */
+  padding: 25px; /* Aumenta o padding interno para mais respiro */
+  width: 100%; /* ocupa a largura da coluna do grid */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #eee; /* Adiciona uma borda sutil */
+}
+
+.desmanche-card:hover {
+  transform: translateY(-5px); /* Efeito sutil de elevação no hover */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Sombra mais pronunciada no hover */
+}
+
+.desmanche-imagem {
+  width: 100px; /* Aumenta um pouco o tamanho da imagem */
+  height: 100px; /* Aumenta um pouco o tamanho da imagem */
+  object-fit: cover; /* Garante que a imagem preencha a área, cortando se necessário */
+  border-radius: 50%; /* Torna a imagem circular */
+  margin: 0 auto 20px auto; /* Centraliza e adiciona margem inferior */
+  border: 3px solid #f55404; /* Borda da cor do tema para destaque */
+  background-color: #f7f7f7; /* Fundo para quando a imagem não carregar ou for a lupa.png */
+  display: block; /* Garante que as margens auto funcionem para centralizar */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil na imagem */
+}
+
+.desmanche-nome {
+  font-size: 1.3em; /* Tamanho da fonte maior */
+  font-weight: 600; /* Mais negrito */
+  color: #2c3e50; /* Cor de texto mais moderna */
+  margin-bottom: 10px;
+}
+
+.desmanche-horario {
+  font-size: 0.95em; /* Ligeiramente menor */
+  color: #6c7a89; /* Cinza azulado suave */
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+.desmanche-horario-detalhe {
+  font-size: 1em; /* Tamanho padrão */
+  color: #34495e; /* Cinza/azul mais escuro */
+  font-weight: 500;
+  margin-bottom: 15px; /* Espaço antes do botão */
+}
+
+.botao-acesso {
+  margin-top: 15px; /* Mais espaço acima do botão */
+  padding: 12px 25px; /* Padding generoso */
+  background-color: #f55404; /* Cor laranja vibrante original */
+  color: white;
+  border: none;
+  border-radius: 8px; /* Cantos arredondados */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Adiciona transição de transform */
+  font-size: 1em; /* Tamanho de fonte padrão */
+}
+
+.botao-acesso:hover {
+  background-color: #d14700; /* Tom mais escuro no hover */
+  transform: translateY(-2px); /* Efeito sutil de elevação */
+}
+
+/* Grid e paginação para a vitrine (3 por página) */
+.desmanches-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+  margin-bottom: 12px; /* garante espaço abaixo do grid para o pager */
+}
+
+.desmanches-pager {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  clear: both; /* garante que o pager fique após o grid */
+  z-index: 2;
+}
+
+.pager-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  background: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.pager-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.pager-info {
+  color: #555;
+  font-weight: 600;
+}
+
+/* Responsividade para o grid dos desmanches */
+@media (max-width: 900px) {
+  .desmanches-container {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .home-container {
+    padding: 15px; /* Menor padding em telas pequenas */
+  }
+  .desmanches-container {
+    gap: 20px;
+    grid-template-columns: 1fr; /* Uma coluna em telas muito pequenas */
+  }
+  .desmanche-card {
+    width: 100%; /* Cards ocupam a largura total em telas muito pequenas */
+  }
+  .home-container > div:first-child {
+    margin-bottom: 30px; /* Menos espaço abaixo da pesquisa em telas pequenas */
+  }
+}

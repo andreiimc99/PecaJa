@@ -1,0 +1,48 @@
+.perfil-cliente-loading {
+  font-size: 1rem;
+  color: #20754d;
+  padding: 24px;
+}
+
+.perfil-cliente-card {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Inter', sans-serif;
+}
+
+.perfil-cliente-title {
+  font-size: 1.75rem;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.perfil-cliente-back {
+  display: inline-block;
+  margin-bottom: 24px;
+  background-color: #f55404;
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s ease;
+}
+
+.perfil-cliente-back:hover {
+  background-color: #e04300;
+}
+
+.perfil-cliente-fields p {
+  color: #227a3d;
+  font-size: 1.05rem;
+  margin: 8px 0;
+}
+
+.perfil-cliente-fields strong {
+  color: #20754d;
+}

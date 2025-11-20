@@ -1,0 +1,473 @@
+/* DesmanchePerfil.css */
+
+.perfil-pagina {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  box-sizing: border-box;
+  min-height: 100vh;
+  background: #f8f9fa;
+  /* Largura padrão para todos os containers desta página */
+  --perfil-container-max: 1700px;
+}
+
+/* Garante que os principais containers tenham a MESMA largura e centralização */
+.perfil-pagina .perfil-card,
+.perfil-pagina .estoque-section {
+  width: 100%;
+  max-width: var(--perfil-container-max);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.botao-voltar-perfil {
+  background: none;
+  border: 1px solid #ccc;
+  color: #555;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: all 0.2s;
+}
+
+.botao-voltar-perfil:hover {
+  background-color: #f0f0f0;
+  border-color: #aaa;
+}
+
+.perfil-card {
+  background: #fff;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+  margin: 0 auto;
+  border: none;
+  border-bottom: 1px solid #e5e7eb;
+  /* Unifica a largura do container com o restante da página */
+  max-width: var(--perfil-container-max);
+}
+
+.perfil-header {
+  background: linear-gradient(135deg, #f55404 0%, #ff7b47 100%);
+  color: white;
+  padding: 24px 32px;
+  text-align: left;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 4px 20px rgba(245, 84, 4, 0.2);
+  /* Mantém o mesmo alinhamento visual do conteúdo */
+  width: 100%;
+}
+
+.perfil-icone-header {
+  font-size: 3rem;
+  margin-bottom: 0;
+  opacity: 0.95;
+}
+
+.perfil-foto-header {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.perfil-header-content {
+  flex: 1;
+}
+
+.perfil-nome {
+  margin: 0 0 6px 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.perfil-descricao {
+  font-size: 1rem;
+  opacity: 0.92;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.perfil-body {
+  padding: 24px 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+  background: #f8f9fa;
+  max-width: var(--perfil-container-max);
+  margin: 0 auto;
+}
+
+.perfil-info-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.perfil-info-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.perfil-info-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.perfil-info-icone {
+  color: #f55404;
+  font-size: 1.2rem;
+  min-width: 20px;
+}
+
+.status-container {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.status-container.erro {
+  color: #d94303;
+}
+
+.botao-whatsapp {
+  background-color: #25d366;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.botao-whatsapp:hover {
+  background-color: #128c7e;
+  color: white;
+}
+
+.botao-whatsapp .perfil-info-icone {
+  color: white;
+}
+
+/* Ações de contato alinhadas em linha */
+.contato-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn-acao-contato {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: none;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.btn-acao-contato:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.btn-acao-contato.whatsapp {
+  background: #25d366;
+  color: #fff;
+}
+.btn-acao-contato.whatsapp:hover {
+  background: #20bd5a;
+}
+.btn-acao-contato.email {
+  background: #f0f0f0;
+  color: #333;
+  border: 1px solid #d1d1d1;
+}
+.btn-acao-contato.email:hover {
+  background: #e5e5e5;
+}
+
+/* === ESTILOS PARA A SEÇÃO DE ESTOQUE === */
+
+.estoque-section {
+  background-color: #fff;
+  padding: 24px 32px;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  max-width: var(--perfil-container-max);
+  margin: 0 auto;
+}
+
+.estoque-titulo {
+  font-size: 1.5rem;
+  color: #1f2937;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px solid #f55404;
+  padding-bottom: 8px;
+  font-weight: 700;
+}
+
+.estoque-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.estoque-filtros {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.input,
+.select {
+  padding: 10px 12px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  background: #fff;
+}
+.estoque-quantidade {
+  color: #666;
+}
+
+.estoque-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.estoque-item-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 16px;
+  transition: background-color 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+
+.estoque-item-card:hover {
+  background-color: #f9fafb;
+}
+
+.estoque-item-imagem {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.estoque-item-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.estoque-item-nome {
+  font-size: 1.2rem;
+  color: #f55404;
+  margin: 0 0 10px 0;
+}
+
+.estoque-item-descricao {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.estoque-item-preco {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+  text-align: left;
+  margin-top: auto;
+}
+
+.estoque-vazio-mensagem {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #777;
+  padding: 40px 0;
+}
+
+/* === ESTILOS PARA O BOTÃO DE FAVORITAR === */
+
+.botao-favoritar {
+  background-color: #fff;
+  color: #d1d1d1;
+  border: 2px solid #e5e7eb;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  z-index: 10;
+  position: relative;
+}
+
+.botao-favoritar:hover {
+  background-color: #fff5f5;
+  color: #ff6b6b;
+  border-color: #ff6b6b;
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.25);
+}
+
+/* Estilo para quando o botão está 'ativo' (peça favoritada) */
+.botao-favoritar.favoritado {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  color: #fff;
+  border-color: #ff6b6b;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.botao-favoritar.favoritado:hover {
+  background: linear-gradient(135deg, #ff5252 0%, #e74c3c 100%);
+  transform: scale(1.15);
+  box-shadow: 0 6px 16px rgba(255, 107, 107, 0.4);
+}
+
+/* Modal de foto expandida */
+.modal-foto-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.modal-foto-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-foto-content img {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.modal-foto-fechar {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  color: #333;
+}
+
+.modal-foto-fechar:hover {
+  background: #fff;
+  transform: scale(1.1);
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+  .perfil-header {
+    padding: 40px 60px;
+  }
+
+  .perfil-body {
+    padding: 40px 60px;
+  }
+
+  .estoque-section {
+    padding: 40px 60px;
+  }
+}
+
+@media (max-width: 900px) {
+  .perfil-header {
+    padding: 32px 24px;
+    gap: 16px;
+  }
+
+  .perfil-body {
+    grid-template-columns: 1fr;
+    padding: 32px 24px;
+  }
+
+  .estoque-section {
+    padding: 32px 24px;
+  }
+
+  .estoque-lista {
+    grid-template-columns: 1fr;
+  }
+
+  .perfil-foto-header {
+    width: 80px;
+    height: 80px;
+  }
+
+  .perfil-nome {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .perfil-header {
+    padding: 24px 16px;
+  }
+
+  .perfil-body {
+    padding: 24px 16px;
+  }
+
+  .estoque-section {
+    padding: 24px 16px;
+  }
+}

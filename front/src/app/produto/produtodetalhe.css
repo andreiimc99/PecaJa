@@ -1,0 +1,268 @@
+/* produtodetalhe.css */
+
+/* ... (estilos de .produtos-layout-wrapper até .no-pecas-message-container p permanecem os mesmos) ... */
+.produtos-layout-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.no-pecas-message-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  text-align: center;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.no-pecas-message-container h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+  font-weight: 600;
+}
+.no-pecas-message-container p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* MUDANÇA: Container para o cabeçalho da seção */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap; /* Permite que os itens quebrem linha em telas menores */
+  gap: 20px;
+}
+
+.header-container h2 {
+  font-size: 2.4rem;
+  color: #333;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* NOVO: Container para agrupar os botões de ação */
+.header-actions {
+  display: flex;
+  gap: 15px;
+}
+
+/* NOVO: Estilo para o botão de importar */
+.btn-importar {
+  padding: 10px 20px;
+  background-color: #28a745; /* Verde */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-importar:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.btn-exportar {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-exportar:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* ... (outros estilos, de .loading até o final, permanecem os mesmos) ... */
+.loading {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #666;
+  margin-top: 40px;
+}
+.lista-pecas {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.peca-item {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+.peca-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+.peca-imagem {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 0;
+  flex-shrink: 0;
+}
+.peca-info {
+  flex-grow: 1;
+  text-align: left;
+}
+.peca-item h3 {
+  margin: 0 0 10px;
+  font-size: 1.4em;
+  color: #333;
+  font-weight: 600;
+  text-align: left;
+}
+.peca-descricao {
+  margin: 0 0 15px;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: left;
+}
+.peca-atributos {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px;
+  text-align: left;
+  line-height: 1.6;
+}
+.peca-atributos li {
+  font-size: 0.9em;
+  color: #444;
+}
+.peca-item.alerta-estoque-baixo {
+  border-left: 5px solid #e74c3c;
+}
+.peca-interesse {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  font-size: 1em;
+  color: #555;
+  margin-top: 10px;
+}
+.peca-interesse .interesse-icone {
+  color: #f55404;
+}
+.controle-estoque {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 180px;
+  align-items: center;
+}
+.quantidade-controle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+.display-qtd {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #333;
+  min-width: 40px;
+  text-align: center;
+}
+.btn-ajuste-qtd {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.btn-ajuste-qtd:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
+}
+.btn-ajuste-qtd:active {
+  transform: scale(0.95);
+}
+.btn-ajuste-qtd:disabled {
+  background-color: #f9f9f9;
+  color: #aaa;
+  cursor: not-allowed;
+  transform: none;
+}
+.controle-estoque .btn-remover {
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  border: none;
+  background-color: #e74c3c;
+}
+.controle-estoque .btn-remover:hover {
+  background-color: #c0392b;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: stretch; /* Estica os itens */
+  }
+
+  .header-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .peca-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .peca-imagem {
+    width: 100%;
+    height: 180px;
+    margin-bottom: 15px;
+  }
+  .controle-estoque {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 0;
+  }
+  .quantidade-controle {
+    width: 60%;
+    margin: 0 auto;
+  }
+}

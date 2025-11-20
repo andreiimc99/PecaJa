@@ -1,0 +1,161 @@
+/* Container principal da página de favoritos */
+.favoritos-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  animation: fadeInPage 0.5s ease-out;
+}
+
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.favoritos-container h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #f9a77e;
+  padding-bottom: 10px;
+}
+
+/* Mensagens de status (Carregando, Erro) */
+.status-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  padding: 50px 0;
+}
+.status-message.error {
+  color: #d94303;
+}
+
+/* Estilo para quando não há favoritos */
+.sem-favoritos {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #fff8f5;
+  border: 1px dashed #f9a77e;
+  border-radius: 8px;
+}
+.sem-favoritos p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+.btn-explorar {
+  padding: 10px 20px;
+  background-color: #f55404;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+.btn-explorar:hover {
+  background-color: #e04300;
+}
+
+/* Lista de favoritos */
+.favoritos-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Item individual da lista (formato de card) */
+.favorito-item {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative; /* Para o botão de remover */
+}
+.favorito-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Imagem da peça */
+.item-imagem {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
+  background-color: #f0f0f0;
+}
+
+/* Detalhes da peça (nome, preço, etc.) */
+.item-detalhes {
+  flex-grow: 1;
+}
+
+.item-nome {
+  margin: 0 0 8px 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.item-nome-link {
+  text-decoration: none;
+  color: inherit;
+}
+.item-nome-link:hover .item-nome {
+  color: #f55404;
+}
+
+.item-preco {
+  margin: 0 0 10px 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #007f60;
+}
+
+.item-desmanche {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #777;
+}
+.item-desmanche a {
+  color: #f55404;
+  text-decoration: none;
+  font-weight: 500;
+}
+.item-desmanche a:hover {
+  text-decoration: underline;
+}
+
+/* Botão de remover */
+.remover-btn {
+  background: #ffeded;
+  color: #cc0000;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  margin-left: 15px;
+}
+.remover-btn:hover {
+  background-color: #cc0000;
+  color: #fff;
+}

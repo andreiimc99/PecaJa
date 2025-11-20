@@ -1,0 +1,129 @@
+/* Removido o estilo 'body' daqui, pois ele afeta o layout global da página.
+   O body deve ser estilizado em um CSS global ou no componente de layout. */
+
+.perfil-container {
+    background-color: #ffffff; /* Fundo branco puro para o cartão */
+    border-radius: 12px; /* Cantos mais arredondados */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* Sombra mais pronunciada mas suave */
+    padding: 30px; /* Preenchimento generoso */
+    width: 100%;
+    max-width: 550px; /* Largura máxima para o cartão */
+    box-sizing: border-box;
+    border: 1px solid #e0e0e0; /* Borda sutil para definir o contêiner */
+    
+    /* CENTRALIZAÇÃO: Anteriormente, o body estava centralizando o item.
+       Agora, se você quiser que este card seja centralizado na área de conteúdo
+       sem afetar o navbar/footer, você pode adicioná-lo dentro de um container
+       maior que use flexbox ou grid, ou aplicar margin: auto aqui se o pai for block.
+       Por enquanto, vamos apenas remover os estilos que empurravam tudo.
+       Se ele ficar no canto superior esquerdo, o CSS global ou do layout precisará
+       posicioná-lo. */
+    margin: 40px auto; /* Adiciona margem superior/inferior e centraliza horizontalmente
+                           dentro de seu elemento pai, que não deve ser o body diretamente
+                           se você tem navbar/footer fixos/flutuantes. */
+}
+
+/* Mensagem de Carregamento */
+.carregando { /* Alterado de .perfil-loading para .carregando conforme seu page.tsx */
+    margin: 40px;
+    font-size: 1.2rem;
+    color: #666; /* Cor mais suave */
+    text-align: center;
+}
+
+/* Cabeçalho (Meu Perfil) */
+.perfil-container h1 {
+    font-size: 2.2em; /* Título maior e mais impactante */
+    color: #2c3e50; /* Um azul/cinza escuro, moderno */
+    margin-bottom: 25px; /* Mais espaço abaixo do título */
+    text-align: left;
+    font-weight: 600; /* Levemente mais negrito */
+}
+
+/* Dados do Perfil */
+.perfil-card p { /* Mantido .perfil-card para corresponder ao seu page.tsx */
+    margin: 15px 0; /* Mais espaço entre as linhas de dados */
+    color: #34495e; /* Um cinza/azul mais escuro para o texto */
+    font-size: 1.05rem; /* Levemente maior */
+    line-height: 1.6; /* Aumenta a altura da linha para melhor leitura */
+}
+
+.perfil-card p strong {
+    color: #2c3e50; /* Cor igual ao título para destaque */
+    font-weight: 600;
+    margin-right: 8px; /* Mais espaço entre o rótulo e o valor */
+}
+
+/* Container de Botões */
+.botoes { /* Adicionado para envolver os botões, se não existir */
+    margin-top: 30px; /* Espaço maior acima dos botões */
+    display: flex; /* Usa flexbox para alinhar botões */
+    gap: 15px; /* Espaçamento entre os botões */
+    justify-content: flex-start; /* Alinha os botões à esquerda */
+}
+
+/* Estilo do Botão Voltar */
+.btn-voltar { /* Mantido .btn-voltar para corresponder ao seu page.tsx */
+    background-color: #6c7a89; /* Um cinza azulado neutro */
+    color: #fff;
+    border: none;
+    padding: 12px 25px; /* Padding generoso */
+    border-radius: 8px; /* Cantos arredondados */
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transição suave */
+    display: inline-flex; /* Para alinhar o ícone e o texto */
+    align-items: center;
+    gap: 5px; /* Espaço entre o ícone e o texto */
+}
+
+.btn-voltar:hover {
+    background-color: #5a6572; /* Um pouco mais escuro no hover */
+    transform: translateY(-2px); /* Efeito sutil de elevação */
+}
+
+/* Estilo do Botão Editar */
+.editar-btn {
+    background-color: #f55404; /* Verde vibrante e moderno */
+    color: #fff;
+    border: none;
+    padding: 12px 25px; /* Padding generoso */
+    border-radius: 8px; /* Cantos arredondados */
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transição suave */
+}
+
+.editar-btn:hover {
+    background-color: #e04300; /* Verde mais escuro no hover */
+    transform: translateY(-2px); /* Efeito sutil de elevação */
+}
+
+/* Ajustes responsivos para telas menores */
+@media (max-width: 600px) {
+    .perfil-container {
+        padding: 25px;
+        margin: 15px; /* Adiciona alguma margem ao redor do container em telas pequenas */
+    }
+
+    .perfil-container h1 {
+        font-size: 2em;
+    }
+
+    .perfil-card p {
+        font-size: 0.95rem;
+        margin: 10px 0;
+    }
+
+    .btn-voltar,
+    .editar-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    .botoes {
+        flex-direction: column; /* Botões empilhados em telas pequenas */
+        gap: 10px;
+    }
+}

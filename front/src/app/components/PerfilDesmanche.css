@@ -1,0 +1,106 @@
+/* src/app/components/PerfilDesmanche.css */
+
+.painel-container {
+  max-width: 600px;
+  margin: 32px auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+.painel-container h1 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: #20754d;
+  text-align: center;
+}
+
+.botao-painel {
+  display: block;
+  width: 100%;
+  background: #f55404;
+  color: #fff;
+  padding: 10px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-bottom: 24px;
+  transition: background 0.3s;
+}
+
+.botao-painel:hover {
+  background: #e04300;
+}
+
+.painel-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo label {
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+  color: #20754d;
+}
+
+.campo input,
+.campo textarea {
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  border: 1px solid #d1e4d7;
+  border-radius: 6px;
+  background: #f7fff8;
+  transition: border-color 0.2s;
+}
+
+.campo input:focus,
+.campo textarea:focus {
+  border-color: #30c877;
+  outline: none;
+}
+
+.campo input[readonly] {
+  background: #f0f9f2;
+  color: #555;
+  border-color: #c7e8d5;
+  cursor: default;
+}
+
+.campo textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.painel-btn {
+  margin-top: 16px;
+  background: linear-gradient(90deg,#30c877 70%, #0070f3 130%);
+  color: #fff;
+  padding: 10px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.painel-btn:hover {
+  background: linear-gradient(90deg,#0070f3 70%, #30c877 130%);
+}
+
+.painel-msg {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  text-align: center;
+  color: #e04300;
+}

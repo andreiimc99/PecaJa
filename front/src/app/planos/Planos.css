@@ -1,0 +1,206 @@
+/* src/app/planos/Planos.css */
+
+.planos-pagina-container {
+  max-width: 1200px; /* Mantém a largura máxima do container geral */
+  margin: 40px auto; /* Centraliza na página */
+  padding: 20px;
+  text-align: center;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Fonte moderna */
+  color: #333; /* Cor de texto padrão */
+}
+
+.planos-header {
+  margin-bottom: 50px;
+}
+
+.planos-header h1 {
+  font-size: 2.8rem; /* Ligeiramente menor que o original 3rem, mais harmonioso */
+  color: #2c3e50; /* Cor do título consistente com outros módulos */
+  font-weight: 600; /* Mais negrito */
+}
+
+.planos-header p {
+  font-size: 1.1rem; /* Ligeiramente menor */
+  color: #555;
+  margin-top: 10px; /* Espaçamento abaixo do título */
+}
+
+.planos-grid {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os cards quebrem a linha */
+  justify-content: center; /* Centraliza os dois cards */
+  gap: 40px; /* Aumenta o espaço entre os cards para 2 itens */
+}
+
+.plano-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px; /* Cantos mais arredondados, consistente */
+  padding: 35px 30px; /* Aumenta um pouco o padding interno */
+  width: 350px; /* Largura um pouco maior para cada card */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* Sombra mais pronunciada e suave */
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  display: flex; /* Usa flexbox para o conteúdo interno do card */
+  flex-direction: column; /* Organiza os itens em coluna */
+  justify-content: space-between; /* Distribui o espaço para o botão ir para o final */
+}
+
+.plano-card:hover {
+  transform: translateY(-8px); /* Efeito de elevação sutil */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12); /* Sombra mais forte no hover */
+}
+
+.plano-card.destaque {
+  border-color: #f55404; /* Borda da cor do tema */
+  border-width: 2px;
+  box-shadow: 0 8px 25px rgba(245, 84, 4, 0.2); /* Sombra com a cor de destaque */
+}
+
+.plano-destaque-tag {
+  background-color: #f55404;
+  color: white;
+  padding: 6px 18px; /* Aumenta um pouco o padding */
+  border-radius: 25px; /* Mais arredondado */
+  font-size: 0.85rem; /* Ligeiramente maior */
+  font-weight: bold;
+  position: absolute;
+  top: -18px; /* Ajusta a posição vertical */
+  left: 50%;
+  transform: translateX(-50%);
+  letter-spacing: 0.5px; /* Adiciona um pouco de espaçamento entre letras */
+}
+
+.plano-titulo {
+  font-size: 1.8rem; /* Título maior */
+  font-weight: 700; /* Mais negrito */
+  color: #2c3e50; /* Cor do título consistente */
+  margin-bottom: 15px; /* Espaçamento abaixo do título */
+}
+
+.plano-preco {
+  font-size: 3rem; /* Preço maior */
+  font-weight: 700; /* Mais negrito */
+  color: #f55404; /* Cor de destaque */
+  margin: 25px 0; /* Mais espaçamento */
+  line-height: 1; /* Garante que não haja espaço extra */
+}
+
+.preco-sufixo {
+  font-size: 1.1rem; /* Ligeiramente maior */
+  color: #777; /* Cor mais suave */
+  font-weight: normal;
+}
+
+.plano-features {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0;
+  text-align: left;
+  line-height: 2.2; /* Aumenta a altura da linha para legibilidade */
+  color: #555;
+  font-size: 0.95rem; /* Ligeiramente menor para os itens da lista */
+}
+
+.plano-features li {
+    padding-left: 25px; /* Espaço para um ícone customizado se quiser */
+    position: relative;
+}
+
+/* Ícone de checkmark (opcional, adicione se quiser) */
+.plano-features li::before {
+    content: '✓'; /* Ou use um ícone SVG/font-awesome */
+    color: #27ae60; /* Cor verde para o checkmark */
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+
+.plano-botao {
+  width: 100%;
+  padding: 16px; /* Aumenta o padding do botão */
+  border: none;
+  border-radius: 8px; /* Cantos arredondados */
+  background-color: #34495e; /* Um cinza-azul escuro neutro para botões padrão */
+  color: white;
+  font-size: 1.05rem; /* Ligeiramente maior */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Adiciona transform transition */
+  margin-top: auto; /* Empurra o botão para o final do card flex */
+}
+
+.plano-botao:hover {
+  background-color: #2c3e50; /* Escurece no hover */
+  transform: translateY(-2px); /* Efeito sutil de elevação */
+}
+
+.plano-card.destaque .plano-botao {
+  background-color: #f55404; /* Botão de destaque com a cor do tema */
+}
+
+.plano-card.destaque .plano-botao:hover {
+  background-color: #d94303; /* Escurece no hover do botão de destaque */
+  transform: translateY(-2px);
+}
+
+.botao-voltar-planos {
+  margin-top: 60px; /* Mais espaço para o botão voltar */
+  background-color: #6c7a89; /* Cor consistente com outros botões de voltar */
+  border: none;
+  color: white; /* Cor do texto branco */
+  padding: 12px 25px; /* Padding generoso */
+  border-radius: 8px; /* Cantos arredondados */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: bold;
+  font-size: 1em;
+  display: inline-flex; /* Para alinhar o ícone e o texto */
+  align-items: center;
+  gap: 5px; /* Espaço entre o ícone e o texto */
+}
+
+.botao-voltar-planos:hover {
+  background-color: #5a6572; /* Tom mais escuro no hover */
+  transform: translateY(-2px); /* Efeito sutil de elevação */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .planos-header h1 {
+    font-size: 2.2rem;
+  }
+  .planos-header p {
+    font-size: 1rem;
+  }
+  .plano-card {
+    width: 90%; /* Cards ocupam mais largura em telas menores */
+    max-width: 350px; /* Garante que não fiquem muito grandes em telas médias */
+    margin: 0 auto; /* Centraliza individualmente se ficarem em coluna */
+  }
+  .planos-grid {
+    gap: 30px; /* Mantém o gap entre os cards */
+  }
+}
+
+@media (max-width: 480px) {
+  .plano-card {
+    padding: 30px 20px;
+  }
+  .plano-titulo {
+    font-size: 1.6rem;
+  }
+  .plano-preco {
+    font-size: 2.5rem;
+  }
+  .plano-botao {
+    padding: 14px;
+    font-size: 0.95rem;
+  }
+  .botao-voltar-planos {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}

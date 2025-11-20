@@ -1,0 +1,55 @@
+.pdv-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 32px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  font-family: 'Inter', sans-serif;
+}
+
+.pdv-container h1 {
+  text-align: center;
+  color: #20754d;
+  margin-bottom: 24px;
+  font-size: 1.75rem;
+}
+
+.pdv-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.pdv-field label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #2d4747;
+}
+
+.pdv-field input,
+.pdv-field textarea {
+  padding: 10px 12px;
+  border: 1px solid #d4eede;
+  border-radius: 8px;
+  background: #f3fff9;
+  font-size: 0.95rem;
+  color: #1e3a2b;
+}
+
+.pdv-field.readonly input,
+.pdv-field.readonly textarea {
+  background: #eef9ef;
+  cursor: default;
+}
+
+.pdv-field textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.pdv-loading {
+  text-align: center;
+  margin: 80px 0;
+  color: #888;
+}

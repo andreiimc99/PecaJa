@@ -1,0 +1,436 @@
+/* src/app/produto/produtodetalhe.module.css */
+
+/* NOTE: CSS variables are defined in globals.css to avoid CSS Modules purity errors */
+
+.produtosLayoutWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.noPecasMessageContainer {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  text-align: center;
+}
+.noPecasMessageContainer h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+  font-weight: 600;
+}
+.noPecasMessageContainer p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* --- Container de Cabeçalho (Título + Botões) --- */
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.headerContainer h2 {
+  font-size: 2.4rem;
+  color: #333;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* NOVO: Container para agrupar os botões de ação */
+.headerActions {
+  display: flex;
+  gap: 15px;
+}
+
+/* Estilo para os botões de Importar/Exportar */
+.btnImportar {
+  padding: 10px 20px;
+  background-color: var(--success); /* Verde para Importar */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.btnImportar:hover {
+  background-color: var(--success-dark);
+  transform: translateY(-2px);
+}
+.btnExportar {
+  padding: 10px 20px;
+  background-color: var(--blue); /* Azul para Exportar */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.btnExportar:hover {
+  background-color: var(--blue-dark);
+  transform: translateY(-2px);
+}
+
+/* --- Listagem de Peças (Layout de Linha) --- */
+.loading {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #666;
+  margin-top: 40px;
+}
+.listaPecas {
+  display: flex;
+  flex-direction: column; /* formato lista vertical */
+  gap: 0; /* linhas contínuas, separadas por borda */
+  border-top: 1px solid #ececec;
+}
+.pecaItem {
+  background-color: #ffffff;
+  border-radius: 0; /* lista, sem cantos arredondados */
+  box-shadow: none; /* remover aparência de card */
+  padding: 16px 0; /* respiro vertical */
+  transition: background-color 0.2s ease;
+  border: 0;
+  border-bottom: 1px solid #ececec; /* separador entre itens */
+  display: flex;
+  flex-direction: row; /* volta a ser linha: imagem | info | controles */
+  align-items: flex-start;
+  gap: 20px;
+}
+.pecaItem:hover {
+  background-color: #f9fafb; /* leve destaque na linha */
+}
+.pecaImagem {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 0;
+  flex-shrink: 0;
+}
+.pecaInfo {
+  flex-grow: 1;
+  text-align: left;
+}
+.pecaItem h3 {
+  margin: 0 0 10px;
+  font-size: 1.4em;
+  color: #333;
+  font-weight: 600;
+  text-align: left;
+}
+.pecaTituloRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 999px;
+  line-height: 1;
+  border: 1px solid transparent;
+}
+.badgeLowStock {
+  background-color: #fff1f0;
+  color: #d4380d;
+  border-color: #ffd1cc;
+}
+.pecaDescricao {
+  margin: 0 0 15px;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: left;
+}
+.pecaAtributos {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px;
+  text-align: left;
+  line-height: 1.6;
+}
+.pecaAtributos li {
+  font-size: 0.9em;
+  color: #444;
+}
+
+/* --- Alerta e Interesse --- */
+.pecaItem.alertaEstoqueBaixo {
+  border-left: 3px solid var(--danger); /* Borda lateral de alerta */
+  background-color: #fffafa;
+}
+.pecaInteresse {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  font-size: 1em;
+  color: var(--muted);
+  margin-top: 10px;
+}
+.pecaInteresse .interesseIcone {
+  color: var(--brand);
+}
+
+/* --- Controles de Estoque --- */
+.controleEstoque {
+  display: flex;
+  flex-direction: column; /* bloco lateral com botões */
+  gap: 12px;
+  margin-left: auto; /* empurra para a direita */
+  flex-shrink: 0;
+  width: 160px;
+  align-items: center;
+}
+.quantidadeControle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* botões +/- nas pontas */
+  gap: 10px;
+  width: 100%;
+}
+.displayQtd {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #333;
+  min-width: 40px;
+  text-align: center;
+}
+.displayQtd.alertaEstoqueBaixo {
+  color: #e74c3c;
+}
+.btnAjusteQtd {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.btnAjusteQtd:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
+}
+.btnAjusteQtd:disabled {
+  background-color: #f9f9f9;
+  color: #aaa;
+  cursor: not-allowed;
+  transform: none;
+}
+.controleEstoque .btnRemover {
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  border: none;
+  background-color: var(--danger);
+}
+.controleEstoque .btnRemover:hover {
+  background-color: var(--danger-dark);
+}
+
+/* Botão Editar - estilo compacto que combina com o layout */
+.controleEstoque .btnEditar {
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: #333;
+  background-color: #ffffff;
+  border: 1px solid #d1d1d1;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.12s;
+  width: 100%;
+}
+.controleEstoque .btnEditar:hover {
+  background-color: #f7f7f7;
+  transform: translateY(-1px);
+}
+
+/* --- Estilos para o Modal de Importação --- */
+/* Adicionado aqui para o componente ImportModal poder usar estas classes */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  text-align: center;
+}
+
+.modalCloseButton {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #555;
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 25px;
+}
+
+.modalStep {
+  margin: 15px 0 10px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.modalStep strong {
+  color: #f55404;
+}
+
+/* Botão de Template (Exportar) */
+.btnExportTemplate {
+  background-color: #007bff; /* Azul para Download */
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 20px;
+}
+.btnExportTemplate:hover {
+  background-color: #0056b3;
+}
+
+/* Botão de Importar Final */
+.btnImportFinal {
+  background-color: #28a745; /* Verde para Importar */
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: block; /* Para fazer o label ocupar a largura total */
+  text-align: center;
+}
+.btnImportFinal:hover {
+  background-color: #218838;
+}
+
+.modalLoading {
+  margin-top: 15px;
+  color: #f55404;
+  font-weight: 600;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+  .headerContainer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .headerActions {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .btnImportar,
+  .btnExportar {
+    flex-grow: 1;
+  }
+  .pecaItem {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .pecaImagem {
+    width: 100%;
+    height: 180px;
+    margin-bottom: 15px;
+  }
+  .controleEstoque {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 0;
+  }
+  .quantidadeControle {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .produtosLayoutWrapper {
+    padding: 15px;
+  }
+  .headerContainer h2 {
+    font-size: 2rem;
+  }
+  .pecaItem h3 {
+    font-size: 1.3em;
+  }
+  .pecaDescricao {
+    font-size: 0.9em;
+  }
+}
+
+/* On larger screens, show actions horizontally for a more compact, visual layout */
+@media (min-width: 769px) {
+  .controleEstoque {
+    flex-direction: row;
+    width: auto;
+    align-items: center;
+    gap: 8px;
+  }
+  .controleEstoque .btnRemover,
+  .controleEstoque .btnEditar {
+    width: auto;
+    padding: 10px 14px;
+  }
+}

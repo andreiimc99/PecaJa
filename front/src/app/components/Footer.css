@@ -1,0 +1,102 @@
+/* Container principal do footer */
+.footer {
+  background-color: #1A2B44; /* Mesmo azul escuro do fundo do site */
+  color: #A0AEC0; /* Tom de cinza claro para o texto */
+  padding: 48px 40px 0 40px; /* Espaçamento interno, sem padding na base */
+  font-family: 'Inter', sans-serif;
+}
+
+/* Conteúdo principal do footer, dividido em seções */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto; /* Centraliza o conteúdo */
+  padding-bottom: 32px;
+}
+
+/* Estilo de cada seção (Sobre, Links, Contato) */
+.footer-section {
+  flex: 1;
+  min-width: 220px;
+}
+
+.footer-section h3 {
+  color: #FFFFFF;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.footer-logo {
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+}
+
+.footer-section p {
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+/* Estilo para a lista de links */
+.footer-section.links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section.links li {
+  margin-bottom: 10px;
+}
+
+.footer-section.links a {
+  color: #A0AEC0;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-section.links a:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+/* Ícones de redes sociais */
+.social-icons {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.social-icons a {
+  color: #A0AEC0;
+  font-size: 24px;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.social-icons a:hover {
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+/* Barra inferior com o copyright */
+.footer-bottom {
+  border-top: 1px solid #334155; /* Linha separadora */
+  padding: 20px 0;
+  text-align: center;
+  font-size: 13px;
+  color: #718096;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .social-icons {
+    justify-content: center;
+  }
+}

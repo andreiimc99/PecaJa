@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Exportar Peças - Exemplo</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; padding: 24px; }
+    .card { max-width:700px; margin:0 auto; border:1px solid #ddd; padding:16px; border-radius:8px }
+    label { display:block; margin-top:12px }
+    input[type=text] { width:100%; padding:8px; font-size:14px }
+    button { margin-top:12px; padding:10px 16px; font-size:14px }
+    .hint { color:#666; font-size:13px; margin-top:8px }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Exportar Peças (Exemplo)</h2>
+    <p>Cole aqui o token JWT retornado pelo login (ou execute o login via console) e faça o download do CSV.</p>
+
+    <label for="token">JWT (Authorization: Bearer &lt;token&gt;)</label>
+    <input id="token" type="text" placeholder="Cole o token aqui ou deixe vazio para pegar do localStorage" />
+
+    <div style="display:flex; gap:8px; margin-top:12px;">
+      <button id="btnExport">Exportar peças (dados)</button>
+      <button id="btnTemplate">Baixar template (cabeçalho)</button>
+    </div>
+
+    <p class="hint">Dica: abra o DevTools → Console e execute:<br><code>localStorage.setItem('token', 'SEU_TOKEN_AQUI')</code> para gravar o token usado por padrão.</p>
+
+    <hr />
+    <h4>Exemplo rápido de login (browser console)</h4>
+    <pre style="background:#f6f6f6;padding:8px;border-radius:4px">fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:'seu-email@exemplo.com',senha:'suaSenha'})})
+  .then(r=>r.json()).then(j=>{ console.log(j); if(j.token) localStorage.setItem('token', j.token); })</pre>
+  </div>
+
+  <script src="/export.js"></script>
+</body>
+</html>
