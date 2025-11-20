@@ -146,7 +146,6 @@ export default function HistoricoPage() {
       if (dataFim) qs.set("ate", dataFim);
       const res = await fetch(
         apiUrl(`/api/pecas/historico?${qs.toString()}`),
-      headers
         { headers }
       );
       if (!res.ok) throw new Error(`Falha export HTTP ${res.status}`);
