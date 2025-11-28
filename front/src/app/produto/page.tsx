@@ -50,12 +50,9 @@ export default function ProdutoDetalhe() {
       return;
     }
     try {
-      const res = await fetch(
-        apiUrl(`/api/pecas?desmanche_id=${usuario.id}`),
-        {
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
-        }
-      );
+      const res = await fetch(apiUrl(`/api/pecas?desmanche_id=${usuario.id}`), {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
       if (!res.ok) {
         if (res.status === 401) {
           alert("Sessão expirada ou não autorizada. Faça login novamente.");
@@ -143,8 +140,8 @@ export default function ProdutoDetalhe() {
     }
 
     try {
-      const res = await fetch(apiUrl(`/api/pecas/${pecaId}`), {
-        method: "PUT",
+      const res = await fetch(apiUrl(`/api/pecas/${pecaId}/ajuste`), {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
