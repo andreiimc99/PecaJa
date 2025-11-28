@@ -126,18 +126,17 @@ export default function ProdutoDetalhe() {
     quantidadeAtual: number,
     tipo: "aumentar" | "diminuir"
   ) => {
-    const novaQuantidade =
-      tipo === "aumentar" ? quantidadeAtual + 1 : quantidadeAtual - 1;
-
-    if (novaQuantidade < 0) {
-      return;
-    }
-
     const token = storage.get("token") ?? "";
     if (!token) {
       alert("Você precisa estar logado.");
       return;
     }
+
+    // Backend espera tipo e quantidade
+    const payload = {
+      tipo: tipo === "aumentar" ? "entrada" : "saida",
+      quantidade: 1,
+    };
 
     try {
       const res = await fetch(apiUrl(`/api/pecas/${pecaId}/ajuste`), {
@@ -146,16 +145,25 @@ export default function ProdutoDetalhe() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ quantidade: novaQuantidade }),
+        body: JSON.stringify(payload),
       });
 
       if (!res.ok) {
         throw new Error(`Erro ao atualizar a quantidade: status ${res.status}`);
       }
 
+      // Atualiza localmente apenas se sucesso
       setPecas((prevPecas) =>
         prevPecas.map((p) =>
-          p.id === pecaId ? { ...p, quantidade: novaQuantidade } : p
+          p.id === pecaId
+            ? {
+                ...p,
+                quantidade:
+                  tipo === "aumentar"
+                    ? p.quantidade + 1
+                    : Math.max(0, p.quantidade - 1),
+              }
+            : p
         )
       );
     } catch (err) {
